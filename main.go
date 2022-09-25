@@ -71,7 +71,7 @@ func indexPage(w http.ResponseWriter, r *http.Request) { //функция заб
 
 			}
 
-			result.Status = "Сокращение было выполнено успешно" //Обновляем статус
+			result.Status = "Сокращение выполнено" //Обновляем статус
 		}
 	}
 
