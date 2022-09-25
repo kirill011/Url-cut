@@ -13,8 +13,7 @@
         {{end}}
         {{if .Link}}
         <br> "{{.Link}}" соответствует
-
-        <br><a href="http://localhost:8080/{{.Short}}">http://localhost:8080/{{.Short}}</a>
+        <br><input type="url" readonly size="100" value="http://localhost:8080/{{.Short}}">
         {{else}}
         <br>
         <form action="/" name=f method="POST">
