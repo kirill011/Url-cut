@@ -12,7 +12,7 @@
         {{.Status}}
         {{end}}
         {{if .Link}}
-        <br>Сокращённая ссылка ({{.Link}})
+        <br> {{.Link}} Соответствует
         <br><input type="url" readonly size="100" value="http://localhost:8080/{{.Short}}">
         {{else}}
         <br>
