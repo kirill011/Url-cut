@@ -45,7 +45,7 @@ func indexPage(w http.ResponseWriter, r *http.Request) { //функция заб
 
 		if !testUrl(r.FormValue("s")) { // Если link имеет неправильный формат
 
-			result.Status = "Неправильный формат!"
+			result.Status = "Ссылка имеет неправильный формат"
 			result.Link = ""
 
 		} else {
