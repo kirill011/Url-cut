@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Url cut</title>
+</head>
+
+<body>
+    <center>
+        {{if .Status}}
+        {{.Status}}
+        {{end}}
+        {{if .Link}}
+        <br> "{{.Link}}" соответствует
+
+        <br><a href="http://localhost:8080/{{.Short}}">http://localhost:8080/{{.Short}}</a>
+        <p>
+            Вернуться на главную
+        </p>
+        <br><a href="http://localhost:8080/">http://localhost:8080/</a>
+        {{else}}
+        <br>
+        <p>
+            Введите ссылку для сокращения и количество дней, которой она будет храниться
+        </p>
+        <form action="/" name=f method="POST">
+            <input maxLength=1024 size=70 name=s value="Ссылка" title="Введите ссылку">
+            <input maxLength=3 size=10 name=d value="3" title="Введите ссылку">
+            <input type=submit value="Сократить ссылку" name=qr>
+        </form>
+        <br>
+        {{end}}
+    </center>
+</body>
+
+</html>
