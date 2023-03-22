@@ -8,19 +8,6 @@
 
 <body>
     <center>
-        {{if .Status}}
-        {{.Status}}
-        {{end}}
-        {{if .Link}}
-        <br> "{{.Link}}" соответствует
-
-        <br><a href="http://localhost:8080/{{.Short}}">http://localhost:8080/{{.Short}}</a>
-        <p>
-            Вернуться на главную
-        </p>
-        <br><a href="http://localhost:8080/">http://localhost:8080/</a>
-        {{else}}
-        <br>
         <p>
             Введите ссылку для сокращения и количество дней, которой она будет храниться
         </p>
@@ -30,6 +17,13 @@
             <input type=submit value="Сократить ссылку" name=qr>
         </form>
         <br>
+        {{if .Status}}
+        {{.Status}}
+        {{end}}
+        {{if .Link}}
+        <br> "{{.Link}}" соответствует
+
+        <br><a href="http://localhost:8080/{{.Short}}">http://localhost:8080/{{.Short}}</a>
         {{end}}
     </center>
 </body>

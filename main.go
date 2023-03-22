@@ -70,7 +70,7 @@ func indexPage(w http.ResponseWriter, r *http.Request) {
 			days, err := strconv.Atoi(r.FormValue("d"))              //Берём с формы количество дней до удаления
 			if err != nil || days < 0 || days%1 != 0 || days > 365 { // Проверяем
 
-				result.Status = "Количество дней до удаления должно быть целым неотрицательным числом" + string(rune(8804)) + " 365!"
+				result.Status = "Количество дней до удаления должно быть целым неотрицательным числом " + string(rune(8804)) + " 365!"
 				result.Link = ""
 				fmt.Println(result.Link, result.Status)
 				templ.Execute(w, result) //Передаём на сервер переменную result
@@ -136,6 +136,7 @@ func shortPage(w http.ResponseWriter, r *http.Request) {
 func shorter() string {
 	if dFlag {
 		var maxShort string
+		var delShort string
 		var maxLen int
 		db, err := sql.Open("postgres", connStr) // Открываем соединение с БД
 
@@ -145,7 +146,13 @@ func shorter() string {
 
 		}
 
-		defer db.Close()                                                                                   // После завершения функции закрываем соединение с БД
+		defer db.Close() // После завершения функции закрываем соединение с БД
+
+		rowsDeleted := db.QueryRow("SELECT short from public.deleted order by short limit 1") // Ищем в таблице deleted удалённые short
+		rowsDeleted.Scan(&delShort)
+		if delShort != "" { //Если нашли, то возвращаем их
+			return delShort
+		}
 		rowsMax := db.QueryRow("SELECT length(short) FROM public.url order by length(short) desc limit 1") // Берём из базы данных максимальную длинну short
 		rowsMax.Scan(&maxLen)                                                                              // Записываем в maxLen
 
@@ -161,7 +168,7 @@ func shorter() string {
 	} else {
 		maxLen := 0
 		keys := make([]string, 0, len(mapMas))
-		for key, _ := range mapMas {
+		for key := range mapMas {
 			if len(key) > maxLen {
 				maxLen = len(key)
 			}
