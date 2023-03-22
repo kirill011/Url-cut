@@ -67,8 +67,8 @@ func indexPage(w http.ResponseWriter, r *http.Request) {
 
 			result.Short = shorter() // Помещаем результат от вызова shorter() в экземпляр структуры Result
 
-			days, err := strconv.Atoi(r.FormValue("d"))              //Берём с формы количество дней до удаления
-			if err != nil || days < 0 || days%1 != 0 || days > 365 { // Проверяем
+			days, err := strconv.Atoi(r.FormValue("d")) //Берём с формы количество дней до удаления
+			if err != nil || days < 0 || days > 365 {   // Проверяем
 
 				result.Status = "Количество дней до удаления должно быть целым неотрицательным числом " + string(rune(8804)) + " 365!"
 				result.Link = ""
